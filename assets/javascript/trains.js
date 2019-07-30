@@ -28,6 +28,13 @@ $(document).ready(function() {
     var frequency = $("#frequency")
       .val()
       .trim();
+
+    database.ref().set({
+      train: train,
+      destination: destination,
+      departure: departure,
+      frequency: frequency
+    });
   });
 
   database.ref().on(
