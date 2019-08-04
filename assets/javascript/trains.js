@@ -13,12 +13,7 @@ $(document).ready(function() {
   firebase.initializeApp(firebaseConfig);
   var database = firebase.database();
 
-  //when the user clicks the submit button it grabs the values in the input fields
-
-  //add location in database other than root
-  //var trainsRef = database.ref("/trains");
-  //this might change to trainsRef.on
-
+  //click to be able to add underground line info
   $("#submit").on("click", function() {
     event.preventDefault();
     var train = $("#train")
@@ -36,36 +31,40 @@ $(document).ready(function() {
 
     //TODO: create object to hold train information
 
-    //push that object to the database
-    database.ref().set({
+    //object to hold then push the underground line information
+    var undObj = {
       train: train,
       destination: destination,
       departure: departure,
       frequency: frequency
-    });
-  });
+    };
 
-  database.ref().on(
-    "value",
-    function(snapshot) {
-      console.log(snapshot.val());
-      train = snapshot.val().train;
-      destination = snapshot.val().destination;
-      departure = snapshot.val().departure;
-      frequency = snapshot.val().frequency;
-      $("#scheduleInfo").html(
-        `<tr>
-          <td>${train}</td>
-          <td>${destination}</td>
-          <td>${frequency}</td>
-          <td>12:45</td>
-          <td>18</td>`
-      );
-    },
-    function(errorObject) {
-      console.log("Something bad happened.  Fix it! " + errorObject.code);
-    }
-  );
+    database.ref().push(undObj);
+
+    //TODO: put a modal in here when there was success with adding the underground line
+
+    // database.ref().on(
+    //   "value",
+    //   function(snapshot) {
+    //     console.log(snapshot.val());
+    //     train = snapshot.val().train;
+    //     destination = snapshot.val().destination;
+    //     departure = snapshot.val().departure;
+    //     frequency = snapshot.val().frequency;
+    //     $("#scheduleInfo").html(
+    //       `<tr>
+    //         <td>${train}</td>
+    //         <td>${destination}</td>
+    //         <td>${frequency}</td>
+    //         <td>12:45</td>
+    //         <td>18</td>`
+    //     );
+    //   },
+    //   function(errorObject) {
+    //     console.log("Something bad happened.  Fix it! " + errorObject.code);
+    //   }
+    // );
+  });
 });
 
 //TODO: add a new storage location other than root
@@ -80,12 +79,6 @@ $(document).ready(function() {
 // var empRole = childSnapshot.val().role;
 // var empStart = childSnapshot.val().start;
 // var empRate = childSnapshot.val().rate;
-
-// // Employee Info
-// console.log(empName);
-// console.log(empRole);
-// console.log(empStart);
-// console.log(empRate);
 
 //TODO: make all the returned data into elements with attributes
 //TODO: append those elements to the table
