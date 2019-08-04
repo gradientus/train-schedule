@@ -36,7 +36,7 @@ $(document).ready(function() {
 
     //TODO: create object to hold train information
 
-    //pus that object to the database
+    //push that object to the database
     database.ref().set({
       train: train,
       destination: destination,
@@ -53,12 +53,17 @@ $(document).ready(function() {
       destination = snapshot.val().destination;
       departure = snapshot.val().departure;
       frequency = snapshot.val().frequency;
-      $("#scheduleInfo").text(
-        `${train}    ${destination}    ${departure}   ${frequency}`
+      $("#scheduleInfo").html(
+        `<tr>
+          <td>${train}</td>
+          <td>${destination}</td>
+          <td>${frequency}</td>
+          <td>12:45</td>
+          <td>18</td>`
       );
     },
     function(errorObject) {
-      console.log("Something bad happened: " + errorObject.code);
+      console.log("Something bad happened.  Fix it! " + errorObject.code);
     }
   );
 });

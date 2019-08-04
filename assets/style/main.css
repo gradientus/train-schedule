@@ -1,0 +1,41 @@
+@font-face {
+  font-family: "Subway Ticker";
+  src: url("subwayTicker.ttf");
+}
+
+body {
+  background-color: brown;
+}
+
+.logo {
+  max-width: 33%;
+  height: auto;
+}
+
+.lead {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+}
+
+.c-title {
+  font-size: 2rem;
+}
+
+#scheduleInfo {
+  font-family: "Subway Ticker", "Times New Roman", Times, serif;
+  font-weight: bold;
+}
+
+.scheduler {
+  margin-top: 1rem;
+}
+
+.button {
+  background-color: #0012aa;
+  color: white;
+}
+
+.button:hover {
+  color: white;
+  font-weight: bold;
+}
