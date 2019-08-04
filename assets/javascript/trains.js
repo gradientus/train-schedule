@@ -14,6 +14,11 @@ $(document).ready(function() {
   var database = firebase.database();
 
   //when the user clicks the submit button it grabs the values in the input fields
+
+  //add location in database other than root
+  //var trainsRef = database.ref("/trains");
+  //this might change to trainsRef.on
+
   $("#submit").on("click", function() {
     event.preventDefault();
     var train = $("#train")
@@ -29,6 +34,9 @@ $(document).ready(function() {
       .val()
       .trim();
 
+    //TODO: create object to hold train information
+
+    //pus that object to the database
     database.ref().set({
       train: train,
       destination: destination,
@@ -54,3 +62,29 @@ $(document).ready(function() {
     }
   );
 });
+
+//TODO: add a new storage location other than root
+
+//TODO: add information to database
+//HERE IS EXAMPLE CODE
+// database.ref().on("child_added", function(childSnapshot) {
+//   console.log(childSnapshot.val());
+
+// Store everything into a variable.
+// var train = childSnapshot.val().name;
+// var empRole = childSnapshot.val().role;
+// var empStart = childSnapshot.val().start;
+// var empRate = childSnapshot.val().rate;
+
+// // Employee Info
+// console.log(empName);
+// console.log(empRole);
+// console.log(empStart);
+// console.log(empRate);
+
+//TODO: make all the returned data into elements with attributes
+//TODO: append those elements to the table
+
+//TODO: use the moment.js thing to convert dates
+//TODO: use math to calculate when the next train arrives etc
+//TODO: look at MOMENTJS and TrainPrediction activities
