@@ -57,7 +57,7 @@ $(document).ready(function() {
     //TODO: use math to calculate how many minutes away
 
     $("#scheduleInfo").append(`<tr class="scheduleRow">`);
-    $(".scheduleRow").append(`<td>${tableTrain}</td>
+    $(".scheduleRow").html(`<td>${tableTrain}</td>
     <td>${tableDest}</td>
     <td>${tableFreq}</td><td>17:30</td><td>8</td>`);
     //FIXME: Why are these rows and cells populating so weird???
