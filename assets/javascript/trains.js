@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  //setup Firebase connection information
   var firebaseConfig = {
     apiKey: "AIzaSyDwV6Ai3Eb8YvD_iCDj6QpdQO5vTQE8qhY",
     authDomain: "trainschedule-3055b.firebaseapp.com",
@@ -13,7 +14,7 @@ $(document).ready(function() {
   firebase.initializeApp(firebaseConfig);
   var database = firebase.database();
 
-  //click to be able to add underground line info
+  //click submit to be able to add underground line info
   $("#submit").on("click", function() {
     event.preventDefault();
     var train = $("#train")
@@ -29,9 +30,7 @@ $(document).ready(function() {
       .val()
       .trim();
 
-    //TODO: create object to hold train information
-
-    //object to hold then push the underground line information
+    //to hold then push the underground line information
     var undObj = {
       train: train,
       destination: destination,
@@ -39,50 +38,28 @@ $(document).ready(function() {
       frequency: frequency
     };
 
+    //to push the underground line information
     database.ref().push(undObj);
 
     //TODO: put a modal in here when there was success with adding the underground line
+    //TODO: add a way to clear out the text once it has been added because it lingers
+  });
 
-    // database.ref().on(
-    //   "value",
-    //   function(snapshot) {
-    //     console.log(snapshot.val());
-    //     train = snapshot.val().train;
-    //     destination = snapshot.val().destination;
-    //     departure = snapshot.val().departure;
-    //     frequency = snapshot.val().frequency;
-    //     $("#scheduleInfo").html(
-    //       `<tr>
-    //         <td>${train}</td>
-    //         <td>${destination}</td>
-    //         <td>${frequency}</td>
-    //         <td>12:45</td>
-    //         <td>18</td>`
-    //     );
-    //   },
-    //   function(errorObject) {
-    //     console.log("Something bad happened.  Fix it! " + errorObject.code);
-    //   }
-    // );
+  //to reflect the information in the database in a tr and td elements
+  database.ref().on("child_added", function(childSnapshot) {
+    var tableTrain = childSnapshot.val().train;
+    var tableDest = childSnapshot.val().destination;
+    var tableDep = childSnapshot.val().departure;
+    var tableFreq = childSnapshot.val().frequency;
+
+    //TODO: use the moment.js thing to convert dates
+    //TODO: use math to calculate when the next train arrives
+    //TODO: use math to calculate how many minutes away
+
+    $("#scheduleInfo").append(`<tr class="scheduleRow">`);
+    $(".scheduleRow").append(`<td>${tableTrain}</td>
+    <td>${tableDest}</td>
+    <td>${tableFreq}</td><td>17:30</td><td>8</td>`);
+    //FIXME: Why are these rows and cells populating so weird???
   });
 });
-
-//TODO: add a new storage location other than root
-
-//TODO: add information to database
-//HERE IS EXAMPLE CODE
-// database.ref().on("child_added", function(childSnapshot) {
-//   console.log(childSnapshot.val());
-
-// Store everything into a variable.
-// var train = childSnapshot.val().name;
-// var empRole = childSnapshot.val().role;
-// var empStart = childSnapshot.val().start;
-// var empRate = childSnapshot.val().rate;
-
-//TODO: make all the returned data into elements with attributes
-//TODO: append those elements to the table
-
-//TODO: use the moment.js thing to convert dates
-//TODO: use math to calculate when the next train arrives etc
-//TODO: look at MOMENTJS and TrainPrediction activities
