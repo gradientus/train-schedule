@@ -5,7 +5,7 @@ It will display the train, destination, frequency, next arrival, and how many mi
 
 ## Getting Started
 
-Navigate to https://gradientus.github.io/train 
+Navigate to https://gradientus.github.io/train-schedule/index.html
 
 ### Instructions
 
