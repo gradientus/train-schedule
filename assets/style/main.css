@@ -7,6 +7,10 @@ body {
   background-color: brown;
 }
 
+.jumbo {
+  margin-top: 1rem;
+}
+
 .logo {
   max-width: 33%;
   height: auto;
