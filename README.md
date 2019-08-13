@@ -5,7 +5,7 @@ It will display the train, destination, frequency, next arrival, and how many mi
 
 ## Getting Started
 
-Navigate to https://gradientus.github.io/train 
+Navigate to https://gradientus.github.io/train-schedule/index.html
 
 ### Instructions
 
@@ -107,3 +107,5 @@ available at [http://contributor-covenant.org/version/1/4][version]
 ## Acknowledgments
 
 * busy people
+* the British
+* the hard workers of the Underground
